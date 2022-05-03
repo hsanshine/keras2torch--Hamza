@@ -59,9 +59,9 @@ if __name__ == '__main__':
     trainloader, validloader = make_dataloader(args.datadir, args.batch_size)
 
     # Load model
-    if args.model=='teacher':
-        model = ResNet18().to(device)
-    elif args.model=='student': # checking for student model performance 
+    ## if args.model=='teacher':
+     ##   model = ResNet18().to(device)
+    if args.model=='student': # checking for student model performance 
         if args.student_model=='simplecnn':
             model = Student().to(device)
         elif args.student_model=='resnet18':
