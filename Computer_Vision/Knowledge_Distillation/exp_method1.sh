@@ -4,15 +4,19 @@
 alpha_lst="0.1 0.25 0.5 0.75 0.9"
 temperature_lst="1. 2.5 5. 7.5"
 loss_method="method1"
+student_model_list="studentOne studentTwo studentThree"
 
-for temp in $temperature_lst
+for student_model in $student_model_list
 do
-    for alpha in $alpha_lst
+    for temp in $temperature_lst
     do
-        for loss in $loss_method
+        for alpha in $alpha_lst
         do
-        echo '[KD] alpha: ' $alpha ', temperature: ' $temp
-        python main.py --KD --model student --alpha $alpha --temperature $temp --epochs 100 --loss_method $loss
+            for loss in $loss_method
+            do
+            echo '[KD] alpha: ' $alpha ', temperature: ' $temp
+            python main.py --KD --student_model $student_model --model student --alpha $alpha --temperature $temp --epochs 100 --loss_method $loss
+            done
         done
     done
 done
