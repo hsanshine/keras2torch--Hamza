@@ -19,7 +19,7 @@ if __name__ == '__main__':
     parser.add_argument('--model',type=str,default='teacher',choices=['teacher','student'],help='select model')
     parser.add_argument('--datadir',type=str,default='./data',help='data directory')
     parser.add_argument('--logdir',type=str,default='./logs',help='logdir')
-    parser.add_argument('--lr',type=float,default=0.1,help='learning rate')
+    parser.add_argument('--lr',type=float,default=0.1,help='learning rate') # set different for different students
     parser.add_argument('--batch_size',type=int,default=128,help='the number of batch size')
     parser.add_argument('--temperature',type=float,default=10,help='temperature value')
     parser.add_argument('--temp_scheduler',action='store_true')
@@ -62,9 +62,11 @@ if __name__ == '__main__':
     if args.model=='teacher':
         model = ResNet18().to(device)
     elif args.model=='student': # checking for student model performance 
-        if args.student_model=='simplecnn':
+        if args.student_model=='studentOne':
             model = Student().to(device)
-        elif args.student_model=='resnet18':
+        elif args.student_model=='studentTwo':
+            model = ResNet18().to(device)
+        elif args.student_model=='studentThree':
             model = ResNet18().to(device)
 
     # resume
